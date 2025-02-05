@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="weather.css">
+    <script src="/weather.js" defer></script>
+</head>
+<body>
+    <div class="weatherBody">
+        <div class="weatherSummary">
+            <div class="search-container">
+                <button class="searchBtn">
+                    <img src="/Icons/search.png" alt="">
+                </button>
+                <input type="text" placeholder="Search for places..." >
+            </div>
+            <img src="/Icons/sun_cloudy.png" alt="">
+            <p class="temperature"><span class="tempValue">12</span><sup>&deg;C</sup></p>
+            <div class="day-time"><p class="day">Monday,</p><p class="time">16:00</p></div>
+            <hr class="line">
+            <div class="weatherSummaryDiv">
+                <div class="currentWeatherDiv">
+                    <img src="/Icons/cloud.png" alt="">
+                    <p class="currentWeather">Mostly cloudy</p>
+                </div>
+                <div class="rainPropabilityDiv">
+                    <img src="/Icons/rain.png" alt="">
+                    <p>Rain - <span class="rainPropability">30</span>%</p>
+                </div>
+            </div>
+
+            <div class="city-details">
+                <p class="cityName">New York, Ny, USA</p>
+                
+            </div>
+        </div>
+        <div class="weatherDetails"></div>
+    </div>
+</body>
+</html>

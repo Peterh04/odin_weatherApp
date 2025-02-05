@@ -1,0 +1,203 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  
+  /* 2. Remove default margin */
+  * {
+    margin: 0;
+  }
+  
+  body {
+    /* 3. Add accessible line-height */
+    line-height: 1.5;
+    /* 4. Improve text rendering */
+    -webkit-font-smoothing: antialiased;
+  }
+  
+  /* 5. Improve media defaults */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  
+  /* 6. Inherit fonts for form controls */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  
+  /* 7. Avoid text overflows */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  
+  /* 8. Improve line wrapping */
+  p {
+    text-wrap: pretty;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+  }
+  
+  /*
+    9. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+body{
+    display: flex;
+    height: 100vh;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: azure;
+}
+
+.weatherBody{
+    display: flex;
+
+    height: 85%;
+    width: 70%;
+
+    background-color: white;
+
+    border-radius: 30px;
+}
+
+.weatherSummary{
+    display: flex;
+    flex-direction: column;
+    flex:  1.4;
+
+    align-items: center;
+
+    margin-top: 30px;
+    padding-top: 30px;
+
+    background-color: transparent;
+
+}
+
+.search-container{
+    display: flex;
+   
+    margin-bottom: 30px;
+}
+
+.search-container > button{
+    border: none;
+    background:  transparent;
+
+    height: 25px;
+}
+
+.searchBtn > img{
+    height: 25px;
+}
+
+.search-container > input{
+    height: 25px;
+}
+
+.search-container > input{
+    padding-left: 10px;
+
+    border: none;
+
+    background-color: whitesmoke;
+}
+
+.search-container>input::placeholder{
+    color: black;
+
+    font-weight: 400;
+}
+
+.temperature{
+    font-size: 60px;
+}
+
+.day-time{
+    display: flex;
+
+    font-size: 30px;
+
+    margin-top: 20pxz;
+    margin-bottom: 30px;
+}
+.day-time > .time{
+    color: grey;
+}
+
+hr{
+    border: 0;
+    border-top: 1px solid rgb(196, 196, 196); 
+    width: 70%;
+}
+
+
+.weatherSummaryDiv{
+    display: flex;
+    flex-direction: column;
+}
+
+
+.currentWeatherDiv{
+    display: flex;
+
+    align-items: center;
+
+    margin-top: 20px;
+}
+
+.currentWeatherDiv > p{
+    margin-left: 20px;
+}
+
+
+.rainPropabilityDiv{
+    display: flex;
+
+    align-items: center;
+
+    margin-top: 30px;
+
+}
+
+.rainPropabilityDiv > p{
+    margin-left: 20px;
+
+}
+
+.city-details{
+    background-image: url('/Icons/NY.jpg');
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    width: 70%; 
+    height: 100px; 
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+
+    color: white; 
+    font-size: 20px;
+    font-weight: bold;
+
+    border-radius: 20px;
+
+    margin-top: 20px;
+}
+
+.weatherDetails{
+    display: flex;
+    flex: 3;
+
+    background-color: rgb(247,246,249);
+
+    border-top-right-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
