@@ -60,7 +60,7 @@ body{
     display: flex;
 
     height: 85%;
-    width: 70%;
+    width: 75%;
 
     background-color: white;
 
@@ -70,7 +70,7 @@ body{
 .weatherSummary{
     display: flex;
     flex-direction: column;
-    flex:  1.4;
+    flex:  1.3;
 
     align-items: center;
 
@@ -177,7 +177,7 @@ hr{
     background-size: cover; 
     background-position: center; 
     background-repeat: no-repeat; 
-    width: 70%; 
+    width: 75%; 
     height: 100px; 
     display: flex;
     align-items: center; 
@@ -194,10 +194,188 @@ hr{
 
 .weatherDetails{
     display: flex;
+    flex-direction: column;
     flex: 3;
+
+
+  
 
     background-color: rgb(247,246,249);
 
     border-top-right-radius: 30px;
     border-bottom-right-radius: 30px;
+}
+
+
+.navBar{
+    display: flex;
+    justify-content:space-between;
+
+    margin-top: 30px;
+    padding: 30px;
+
+}
+
+.weatherTimeline > button{
+    background: transparent;
+    border: none;
+
+    color: gray;
+
+    font-size: 18px;
+}
+
+.weatherTimeline > button:hover{
+    cursor: pointer;
+
+    color: black;
+}
+
+.tempConversion{
+    display: flex;
+
+    
+}
+
+.tempConversion > button{
+    display: flex;
+
+    width: 40px;
+    height: 40px;
+
+    background-color: white;
+    color:  gray;
+
+    border-radius: 50%;
+    border: none;
+
+    justify-content: center;
+    align-items: center;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    margin-left: 10px;
+
+    
+}
+
+.tempConversion > button:hover{
+    cursor: pointer;
+}
+
+
+.weatherSummarryDays{
+    display: flex;
+    margin-right: 10px;
+}
+
+
+.summaryDay{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    background-color: white;
+
+    height: 130px;
+    width: 90px;
+
+    margin-left: 20px;
+
+    border-radius: 10px;
+    
+}
+
+.highlightsDiv{
+    display: grid;
+
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+
+    margin-left: 20px;
+}
+
+
+.highlightsDiv > div{
+    height: 180px;
+    width: 220px;
+
+    background-color: white;
+
+    margin-top: 20px;
+    padding-left: 30px;
+
+    border-radius: 10px;
+
+  
+
+}
+
+.highlightsDiv > div:hover{
+    cursor: pointer;
+}
+
+.highlight{
+    display: flex;
+    flex-direction: column;
+    
+    
+    justify-content: center;
+}
+
+
+
+
+.sunrise{
+    display: flex;
+    align-items: center;
+
+    margin-top: 10px;
+}
+
+
+.sunrise img{
+    height: 35px;
+    margin-right: 10px;
+}
+
+
+.windSeedIcon{
+    display: flex;
+
+    align-items: center;
+}
+
+.windSeedIcon > button > img{
+    height: 30px;
+}
+
+.windSeedIcon > button{
+    border-radius: 50%;
+
+    height: 35px;
+    height: 35px;
+
+    border: none;
+
+    margin-right: 10px;
+}
+
+.fontHighlight{
+    font-size: 50px;
+}
+
+h2{
+    display: flex;
+    align-items: center;
+   
+    font-size: 20px;
+
+    margin-left: 30px;
+    margin-top: 20px;
+
+    
 }

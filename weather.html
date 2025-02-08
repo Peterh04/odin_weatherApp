@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
     <link rel="stylesheet" href="weather.css">
-    <script src="/weather.js" defer></script>
+    <script  src="/picture.js" type="module" defer></script>
+    <script  src="/weather.js" type="module" defer></script>
+
 </head>
 <body>
     <div class="weatherBody">
@@ -14,10 +16,10 @@
                 <button class="searchBtn">
                     <img src="/Icons/search.png" alt="">
                 </button>
-                <input type="text" placeholder="Search for places..." >
+                <input type="text" class="searchInput" placeholder="Search for places..." >
             </div>
             <img src="/Icons/sun_cloudy.png" alt="">
-            <p class="temperature"><span class="tempValue">12</span><sup>&deg;C</sup></p>
+            <p class="temperature"><span class="tempValue">12</span><sup>&deg;F</sup></p>
             <div class="day-time"><p class="day">Monday,</p><p class="time">16:00</p></div>
             <hr class="line">
             <div class="weatherSummaryDiv">
@@ -36,7 +38,103 @@
                 
             </div>
         </div>
-        <div class="weatherDetails"></div>
+        <div class="weatherDetails">
+            <div class="navBar">
+                <div class="weatherTimeline">
+                    <button>Today</button>
+                    <button>Week</button>
+                </div>
+                <div class="tempConversion">
+                    <button><sup>&deg;C</sup></button>
+                    <button><sup>&deg;F</sup></button>
+                </div>
+            </div>
+
+            <div class="weatherSummarryDays">
+                <div class="summaryDay">
+                    <p>Sun</p>
+                    <img src="./Icons/sun_small.png" alt="">
+                    <p class="tempDay"><span class="tempValue">12</span><sup>&deg;F</sup></p>
+                </div>
+                <div class="summaryDay">
+                    <p>Mon</p>
+                    <img src="./Icons/sun_small.png" alt="">
+                    <p class="tempDay"><span class="tempValue">12</span><sup>&deg;F</sup></p>
+                </div>
+                <div class="summaryDay">
+                    <p>Tue</p>
+                    <img src="./Icons/sun_small.png" alt="">
+                    <p class="tempDay"><span class="tempValue">12</span><sup>&deg;F</sup></p>
+                </div>
+                <div class="summaryDay">
+                    <p>Wed</p>
+                    <img src="./Icons/sun_small.png" alt="">
+                    <p class="tempDay"><span class="tempValue">12</span><sup>&deg;F</sup></p>
+                </div>
+                <div class="summaryDay">
+                    <p>Thur</p>
+                    <img src="./Icons/sun_small.png" alt="">
+                    <p class="tempDay"><span class="tempValue">12</span><sup>&deg;F</sup></p>
+                </div>
+                <div class="summaryDay">
+                    <p>Fri</p>
+                    <img src="./Icons/sun_small.png" alt="">
+                    <p class="tempDay"><span class="tempValue">12</span><sup>&deg;F</sup></p>
+                </div>
+                <div class="summaryDay">
+                    <p>Sat</p>
+                    <img src="./Icons/sun_small.png" alt="">
+                    <p class="tempDay"><span class="tempValue">12</span><sup>&deg;F</sup></p>
+                </div>
+
+            </div>
+
+            <div class="todayHighlights">
+                <h2>Today's Highlights</h2>
+
+                <div class="highlightsDiv">
+                    <div class="highlight">
+                        <p>UV index</p>
+                        <p class="uvLevel fontHighlight">5</p>
+                    </div>
+                    <div class="highlight">
+                        <p>Window Status</p>
+                        <p><span class="windSpeed fontHighlight" >7.70</span>km/h</p>
+                        <div class="windSeedIcon">
+                            <button><img src="./Icons/location.png" alt=""></button>
+                            <p>WSW</p>
+                        </div>
+                    </div>
+                    <div class="highlight">
+                        <p>Sunrise & Sunset</p>
+                        <div class="sunrise">
+                            <img src="/Icons/arrowUp.png" alt="">
+                            <p class="sunriseTime">6:35 AM</p>
+                        </div>
+
+                        <div class="sunrise">
+                            <img src="/Icons/arrowDown.png" alt="">
+                            <p class="sunSetTime">5:42 PM</p>
+                        </div>
+                    </div>
+                    <div class="highlight">
+                        <p>Humidity</p>
+                        <p><span class="humidityLevel fontHighlight">12</span>%</p>
+                        <p class="remarks">Normal 🫴</p>
+                    </div>
+                    <div class="highlight">
+                        <p>Visibility</p>
+                        <p><span class="visibilityLvl fontHighlight">5.2</span>km</p>
+                        <p class="remarks">Average 😌</p>
+                    </div>
+                    <div class="highlight">
+                        <p>Air quality</p>
+                        <p><span class="Airquality fontHighlight">105</span></p>
+                        <p class="remarks">Unhealthy 👎</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

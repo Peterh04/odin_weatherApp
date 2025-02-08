@@ -1,6 +1,23 @@
+import { getImage } from "./picture.js";
+
+
+
 
 const temp = document.querySelector('.tempValue');
-console.log(temp)
+const  place = document.querySelector('.cityName');
+const searchBtn = document.querySelector(".searchBtn");
+const searchInput = document.querySelector('.searchInput');
+const rainPropability = document.querySelector('.rainPropability');
+const currentWeather = document.querySelector('.currentWeather');
+const uvLevel = document.querySelector('.uvLevel');
+const windSpeed = document.querySelector('.windSpeed');
+const sunriseTime= document.querySelector('.sunriseTime');
+const sunSetTime = document.querySelector('.sunSetTime');
+const humidityLevel = document.querySelector('.humidityLevel');
+const visibilityLvl = document.querySelector('.visibilityLvl');
+const Airquality = document.querySelector('.Airquality');
+
+
 
 
 const getWeatherData = async function getWeatherData(location){
@@ -16,21 +33,27 @@ const getWeatherData = async function getWeatherData(location){
 };
 
 const processWeatherData = async function processWeatherData(data){
-    const location = data.resolvedAddress;
-    const temp=  data.currentConditions.temp
+    place.textContent = data.resolvedAddress;
+    temp.textContent =  data.currentConditions.temp
     let currentDay = '';
     const time = '';
-    const condition = data.currentConditions.conditions;
-    const rainPropability = data.currentConditions.precipprob;
-    const uvIndex = data.currentConditions.uvindex;
-    const  windStatus = data.currentConditions.windspeed;
+    currentWeather.textContent= data.currentConditions.conditions;
+    rainPropability.textContent = data.currentConditions.precipprob;
+    uvLevel.textContent = data.currentConditions.uvindex;
+    windSpeed.textContent = data.currentConditions.windspeed;
     const sunrise = data.currentConditions.sunrise;
     const sunset = data.currentConditions.sunset;
-    const humidity = data.currentConditions.humidity;
-    const visibility =  data.currentConditions.visibility;
+    humidityLevel.textContent = data.currentConditions.humidity;
+    visibilityLvl.textContent=  data.currentConditions.visibility;
 
-   console.log(data)
+   
 }
 
-getWeatherData('london')
+searchBtn.addEventListener('click', () =>{
+   const location = searchInput.value;
+   getImage(location)
+   getWeatherData(location)
+   searchInput.value = ""
+   
+})
 
