@@ -264,6 +264,17 @@ hr{
     cursor: pointer;
 }
 
+.tempConversion .selected {
+    background-color: black;
+    color: white;
+    
+}
+
+
+
+
+
+
 
 .weatherSummarryDays{
     display: flex;
@@ -379,3 +390,4 @@ h2{
 
     
 }
+
