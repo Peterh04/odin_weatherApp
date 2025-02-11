@@ -1,32 +1,31 @@
 import { getImage } from "./picture.js";
 
 
+const elements = {
+    temp : document.querySelector('.tempValue'),
+    place : document.querySelector('.cityName'),
+    searchBtn : document.querySelector(".searchBtn"),
+    searchInput : document.querySelector('.searchInput'),
+    rainPropability : document.querySelector('.rainPropability'),
+    currentWeather : document.querySelector('.currentWeather'),
+    uvLevel : document.querySelector('.uvLevel'),
+    windSpeed : document.querySelector('.windSpeed'),
+    sunriseTime : document.querySelector('.sunriseTime'),
+    sunSetTime : document.querySelector('.sunSetTime'),
+    humidityLevel : document.querySelector('.humidityLevel'),
+    visibilityLvl : document.querySelector('.visibilityLvl'),
+    Airquality : document.querySelector('.Airquality'),
+    tempValueElement :  document.querySelector('.tempValue'),
+    tempUnitElement : document.querySelector('.temperature sup'),
+    recordedTime : document.querySelector('.time'),
+    conditionImg : document.querySelector('.conditionImg'),
+    humidityRemarks : document.querySelector('.humidityRemarks'),
+    visibiltyRemarks : document.querySelector('.visibiltyRemarks'),
+    currentDay : document.querySelector('.day'),
+    tempDayValueElement : document.querySelector('.dayTemp'),
+    tempDayUnitElement : document.querySelector('.tempDay sup'),
+}
 
-
-const temp = document.querySelector('.tempValue');
-const  place = document.querySelector('.cityName');
-const searchBtn = document.querySelector(".searchBtn");
-const searchInput = document.querySelector('.searchInput');
-const rainPropability = document.querySelector('.rainPropability');
-const currentWeather = document.querySelector('.currentWeather');
-const uvLevel = document.querySelector('.uvLevel');
-const windSpeed = document.querySelector('.windSpeed');
-const sunriseTime= document.querySelector('.sunriseTime');
-const sunSetTime = document.querySelector('.sunSetTime');
-const humidityLevel = document.querySelector('.humidityLevel');
-const visibilityLvl = document.querySelector('.visibilityLvl');
-const Airquality = document.querySelector('.Airquality');
-const tempValueElement = document.querySelector('.tempValue');
-const tempUnitElement = document.querySelector('.temperature sup');
-const recordedTime = document.querySelector('.time');
-
-
-const conditionImg = document.querySelector('.conditionImg');
-const humidityRemarks = document.querySelector('.humidityRemarks');
-const visibiltyRemarks = document.querySelector('.visibiltyRemarks');
-const currentDay = document.querySelector('.day');
-const tempDayValueElement = document.querySelector('.dayTemp');
-const tempDayUnitElement = document.querySelector('.tempDay sup');
 
 
 
@@ -35,30 +34,69 @@ const getWeatherData = async function getWeatherData(location){
 
     try{
         const response = await fetch(url);
-        const data = await response.json()
-        processWeatherData(data)
+        if(response.ok){
+            const data = await response.json()
+            processWeatherData(data)
+            getImage(location)
+        }else{
+            console.log('Error:', "Please enter a valid location")
+        }
     }catch(err){
-        console.log(err)
+        console.log('ERROR:', "Can not retrieve data now!")
     }
 };
 
 const processWeatherData = async function processWeatherData(data){
-    place.textContent = data.resolvedAddress;
-    if(tempUnitElement && tempUnitElement.textContent.includes("C")){
+    elements.place.textContent = data.resolvedAddress;
+    if(elements.tempUnitElement && elements.tempDayUnitElement.textContent.includes("C")){
         let newTemp =  data.currentConditions.temp;
         let celsius = ((newTemp - 32) * 5) / 9;
         
 
-        temp.textContent = celsius.toFixed(1)
+        elements.temp.textContent = celsius.toFixed(1)
     }else{
-        temp.textContent =  data.currentConditions.temp
+        elements.temp.textContent =  data.currentConditions.temp
     }
     
    
     const timestamp = data.currentConditions.datetimeEpoch;
     const date = new Date(timestamp * 1000);
-    console.log(date.toUTCString()); 
-    currentDay.textContent = `${date.toLocaleDateString('en-US', { weekday: 'long' })},`;
+    elements.currentDay.textContent = `${date.toLocaleDateString('en-US', { weekday: 'long' })},`;
+
+    let days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
+let newArr = [];
+
+let today = elements.currentDay.textContent.split(",")[0];
+let todayIndex = days.findIndex((day) =>{
+    return day === today.slice(0, 3)
+    
+})
+
+
+
+
+for(let i = todayIndex + 1; i<days.length; i++){
+   newArr.push(days[i])
+}
+
+for(let j = 0; j < days.length; j++){
+    if(!newArr.includes(days[j])){
+        newArr.push(days[j])
+    }
+}
+
+
+
+
+document.querySelector('.day1').textContent = newArr[0]
+document.querySelector('.day2').textContent = newArr[1]
+document.querySelector('.day3').textContent = newArr[2]
+document.querySelector('.day4').textContent = newArr[3]
+document.querySelector('.day5').textContent = newArr[4]
+document.querySelector('.day6').textContent = newArr[5]
+document.querySelector('.day7').textContent = newArr[6]
+
+
 
     
     
@@ -69,27 +107,27 @@ const processWeatherData = async function processWeatherData(data){
 
         hour = hour.startsWith("0") ? hour.slice(1) : hour;
 
-        recordedTime.textContent = `${hour}:${minutes}`
+        elements.recordedTime.textContent = `${hour}:${minutes}`
         
     }
 
     if(data.currentConditions.conditions.includes('cloudy') && data.currentConditions.conditions.includes('Partially')){
-        conditionImg.src = "/Icons/sun_cloudy.png";
+        elements.conditionImg.src = "/Icons/sun_cloudy.png";
     }else if(data.currentConditions.conditions.includes('cloudy') || data.currentConditions.conditions.includes('Overcast')){
-        conditionImg.src = "/Icons/cloudyP.png";
+        elements.conditionImg.src = "/Icons/cloudyP.png";
     }else if(data.currentConditions.conditions.includes('Clear')){
-        conditionImg.src = "/Icons/clearP.png";
+        elements.conditionImg.src = "/Icons/clearP.png";
     }else if(data.currentConditions.conditions.includes('rain') || data.currentConditions.conditions.includes('rainy') || data.currentConditions.conditions.includes('Rain')){
-        conditionImg.src = "/Icons/rainyP.png";
+        elements.conditionImg.src = "/Icons/rainyP.png";
     }else{
-        conditionImg.src = "/Icons/snowP.png";
+        elements.conditionImg.src = "/Icons/snowP.png";
     }
 
-    currentWeather.textContent= data.currentConditions.conditions;
+    elements.currentWeather.textContent= data.currentConditions.conditions;
 
-    rainPropability.textContent = data.currentConditions.precipprob;
-    uvLevel.textContent = data.currentConditions.uvindex;
-    windSpeed.textContent = data.currentConditions.windspeed;
+    elements.rainPropability.textContent = data.currentConditions.precipprob;
+    elements.uvLevel.textContent = data.currentConditions.uvindex;
+    elements.windSpeed.textContent = data.currentConditions.windspeed;
 
 
     // const sunrise = data.currentConditions.sunrise;
@@ -99,7 +137,7 @@ const processWeatherData = async function processWeatherData(data){
 
         hour = hour.startsWith("0") ? hour.slice(1) : hour;
         
-        sunriseTime.textContent = `${hour}:${minutes} AM` 
+        elements.sunriseTime.textContent = `${hour}:${minutes} AM` 
     }
 
     if(data.currentConditions.sunset){
@@ -108,32 +146,31 @@ const processWeatherData = async function processWeatherData(data){
         
         hour = hour.startsWith("0") ? hour.slice(1) : hour;
 
-        sunSetTime.textContent = `${hour}:${minutes} PM`
+        elements.sunSetTime.textContent = `${hour}:${minutes} PM`
 
     }
-    const sunset = data.currentConditions.sunset;
+    
 
     
-    humidityLevel.textContent = data.currentConditions.humidity;
-    
-    if( humidityLevel.textContent > 60){
-        humidityRemarks.textContent = 'High 😔'
-    }else if(humidityLevel.textContent > 30 && humidityLevel.textContent < 60){
-        humidityRemarks.textContent = 'Normal 🫴'
-        
-    }else{
-        humidityRemarks.textContent = 'Low 😔'
+    elements.humidityLevel.textContent = data.currentConditions.humidity;
+  
+    const getHumidityRemark = function getHumidityRemark(humidity){
+        if(humidity > 60) return "High 😔";
+        else if(humidity > 30) return 'Normal 🫴';
+        return 'Low 😔'
     }
+    
+    elements.humidityRemarks.textContent = getHumidityRemark(data.currentConditions.humidity);
    
-    visibilityLvl.textContent=  data.currentConditions.visibility;
+    elements.visibilityLvl.textContent=  data.currentConditions.visibility;
 
-    if(visibilityLvl.textContent > 6){
-      visibiltyRemarks.textContent = 'Good 👌'
-    }else if(visibilityLvl.textContent  > 3 && visibilityLvl.textContent < 6){
-         visibiltyRemarks.textContent = 'Normal 😌'
-    }else{
-        visibiltyRemarks.textContent = 'Bad 😔'
+    const getVisibilityRemark = function getVisibilityRemark(visibility){
+        if(visibility > 6) return 'Good 👌';
+        else if(visibility > 3) return 'Normal 😌'
+        return 'Bad 😔'
     }
+
+    elements.visibiltyRemarks.textContent = getVisibilityRemark(data.currentConditions.visibility)
 
     document.querySelector('.day1temp').textContent = data.days[0].temp
     document.querySelector('.day2temp').textContent = data.days[1].temp
@@ -143,7 +180,7 @@ const processWeatherData = async function processWeatherData(data){
     document.querySelector('.day6temp').textContent = data.days[5].temp
     document.querySelector('.day7temp').textContent = data.days[6].temp
 
-    if(tempDayUnitElement && tempDayUnitElement.textContent.includes("C")){
+    if(elements.tempDayUnitElement && elements.tempDayUnitElement.textContent.includes("C")){
         let newTemp1 = document.querySelector('.day1temp').textContent
         let newTemp2 = document.querySelector('.day2temp').textContent
         let newTemp3 = document.querySelector('.day3temp').textContent
@@ -182,45 +219,20 @@ const processWeatherData = async function processWeatherData(data){
     }
    
 
-   console.log(data)
+  
+   
 }
 
-searchBtn.addEventListener('click', () =>{
-   const location = searchInput.value;
-   getImage(location)
-   getWeatherData(location)
-   searchInput.value = ""
+elements.searchBtn.addEventListener('click', () =>{
+    const location = elements.searchInput.value;
+    if(location){
+        getWeatherData(location)
+    }else{
+        console.log('Location can not be empty')
+    }
+   elements.searchInput.value = ""
    
 })
-
-
-//practice before implementation
-let days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
-let newArr = [];
-
-let today = currentDay.textContent.split(",")[0];
-let todayIndex = days.findIndex((day) =>{
-    return day === today.slice(0, 3)
-})
-
-
-for(let i = todayIndex + 1; i<days.length; i++){
-   newArr.push(days[i])
-}
-
-for(let j = 0; j < days.length; j++){
-    if(!newArr.includes(days[j])){
-        newArr.push(days[j])
-    }
-}
-
-document.querySelector('.day1').textContent = newArr[0]
-document.querySelector('.day2').textContent = newArr[1]
-document.querySelector('.day3').textContent = newArr[2]
-document.querySelector('.day4').textContent = newArr[3]
-document.querySelector('.day5').textContent = newArr[4]
-document.querySelector('.day6').textContent = newArr[5]
-document.querySelector('.day7').textContent = newArr[6]
 
 
 
