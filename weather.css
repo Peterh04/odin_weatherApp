@@ -65,6 +65,9 @@ body{
     background-color: white;
 
     border-radius: 30px;
+
+    position: relative;
+    z-index: 10;
 }
 
 .weatherSummary{
@@ -271,11 +274,6 @@ hr{
 }
 
 
-
-
-
-
-
 .weatherSummarryDays{
     display: flex;
     margin-right: 10px;
@@ -390,4 +388,35 @@ h2{
 
     
 }
+
+.errorBox{
+    display: flex;
+    
+    
+    align-items: center;
+
+    background: rgb(236,191,88);
+    border-radius: 10px;
+
+    width: 300px;
+    padding: 3px;
+
+    position: absolute;
+    left: 30%;
+
+    z-index: 100;
+
+    visibility: hidden;
+}
+
+.errorBox.show{
+   visibility: visible;
+
+    
+}
+
+.errorBox > p{
+    margin-left: 10px;
+}
+
 

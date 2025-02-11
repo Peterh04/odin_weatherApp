@@ -1,4 +1,7 @@
+import { displayErorr } from "./errorDisplay.js";
 import { getImage } from "./picture.js";
+
+
 
 
 const elements = {
@@ -39,10 +42,12 @@ const getWeatherData = async function getWeatherData(location){
             processWeatherData(data)
             getImage(location)
         }else{
-            console.log('Error:', "Please enter a valid location")
+            
+            displayErorr('Please enter a valid location!')
         }
     }catch(err){
-        console.log('ERROR:', "Can not retrieve data now!")
+        displayErorr("Unable to retrieve weather data. Please try again later")
+        
     }
 };
 
@@ -228,7 +233,8 @@ elements.searchBtn.addEventListener('click', () =>{
     if(location){
         getWeatherData(location)
     }else{
-        console.log('Location can not be empty')
+        displayErorr('Location can not be empty!')
+      
     }
    elements.searchInput.value = ""
    
@@ -238,3 +244,6 @@ elements.searchBtn.addEventListener('click', () =>{
 
 
 
+
+
+//Please solve location exists but no image example dududu

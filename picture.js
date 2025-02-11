@@ -1,10 +1,11 @@
 const cityDiv = document.querySelector(".city-details")
 export const getImage = async function getImage(location){
 
-   
+    
 
     try{
         const response = await fetch(url);
+        if(response.ok){}
         const data = await response.json();
         setImage(data)
 
