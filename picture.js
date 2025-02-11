@@ -1,13 +1,13 @@
 const cityDiv = document.querySelector(".city-details")
 export const getImage = async function getImage(location){
 
-    
 
     try{
         const response = await fetch(url);
-        if(response.ok){}
+        
         const data = await response.json();
         setImage(data)
+       
 
     }catch(err){
         console.log(err)
@@ -17,10 +17,16 @@ export const getImage = async function getImage(location){
 
 
 const setImage = async function setImage(data){
-    const url = data.hits[0].webformatURL
-    cityDiv.style.backgroundImage = `url('${url}')`;
-    
+    if (data.hits.length > 0) {
+        const url = data.hits[0].webformatURL;
+        cityDiv.style.backgroundImage = `url('${url}')`;
+    } else {
+        cityDiv.style.backgroundImage = `url('./Icons/NY.jpg')`; 
+    }
 }
+
+
+
 
 
 

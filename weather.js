@@ -3,7 +3,6 @@ import { getImage } from "./picture.js";
 
 
 
-
 const elements = {
     temp : document.querySelector('.tempValue'),
     place : document.querySelector('.cityName'),
@@ -46,7 +45,7 @@ const getWeatherData = async function getWeatherData(location){
             displayErorr('Please enter a valid location!')
         }
     }catch(err){
-        displayErorr("Unable to retrieve weather data. Please try again later")
+        displayErorr("Unable to retrieve weather data. Please try again later!")
         
     }
 };
