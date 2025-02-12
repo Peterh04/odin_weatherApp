@@ -2,6 +2,7 @@ import { displayErorr } from "./errorDisplay.js";
 import { getImage } from "./picture.js";
 
 
+const API_key = 'MF9G7RAV6H3D9QMU7D2ZMXY7Q'
 
 const elements = {
     temp : document.querySelector('.tempValue'),
@@ -26,6 +27,10 @@ const elements = {
     currentDay : document.querySelector('.day'),
     tempDayValueElement : document.querySelector('.dayTemp'),
     tempDayUnitElement : document.querySelector('.tempDay sup'),
+}
+
+const weatherImg = {
+
 }
 
 
@@ -68,10 +73,10 @@ const processWeatherData = async function processWeatherData(data){
     elements.currentDay.textContent = `${date.toLocaleDateString('en-US', { weekday: 'long' })},`;
 
     let days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
-let newArr = [];
+    let newArr = [];
 
-let today = elements.currentDay.textContent.split(",")[0];
-let todayIndex = days.findIndex((day) =>{
+    let today = elements.currentDay.textContent.split(",")[0];
+    let todayIndex = days.findIndex((day) =>{
     return day === today.slice(0, 3)
     
 })
@@ -88,8 +93,6 @@ for(let j = 0; j < days.length; j++){
         newArr.push(days[j])
     }
 }
-
-
 
 
 document.querySelector('.day1').textContent = newArr[0]
@@ -176,55 +179,23 @@ document.querySelector('.day7').textContent = newArr[6]
 
     elements.visibiltyRemarks.textContent = getVisibilityRemark(data.currentConditions.visibility)
 
-    document.querySelector('.day1temp').textContent = data.days[0].temp
-    document.querySelector('.day2temp').textContent = data.days[1].temp
-    document.querySelector('.day3temp').textContent = data.days[2].temp
-    document.querySelector('.day4temp').textContent = data.days[3].temp
-    document.querySelector('.day5temp').textContent = data.days[4].temp
-    document.querySelector('.day6temp').textContent = data.days[5].temp
-    document.querySelector('.day7temp').textContent = data.days[6].temp
+    document.querySelectorAll('.dayTemp').forEach((day, index) =>{
+        day.textContent = data.days[index].temp
+    })
 
     if(elements.tempDayUnitElement && elements.tempDayUnitElement.textContent.includes("C")){
-        let newTemp1 = document.querySelector('.day1temp').textContent
-        let newTemp2 = document.querySelector('.day2temp').textContent
-        let newTemp3 = document.querySelector('.day3temp').textContent
-        let newTemp4 = document.querySelector('.day4temp').textContent
-        let newTemp5 = document.querySelector('.day5temp').textContent
-        let newTemp6 = document.querySelector('.day6temp').textContent
-        let newTemp7 = document.querySelector('.day7temp').textContent
+        document.querySelectorAll('.dayTemp').forEach((day) =>{
+            let temp = parseFloat(day.textContent)
+            let celsious = ((temp - 32) * 5) /9;
+            day.textContent = celsious.toFixed(1)
+        })
 
-        let celsius1 = ((newTemp1 - 32) * 5) / 9;
-        let celsius2 = ((newTemp2 - 32) * 5) / 9;
-        let celsius3 = ((newTemp3 - 32) * 5) / 9;
-        let celsius4 = ((newTemp4 - 32) * 5) / 9;
-        let celsius5 = ((newTemp5 - 32) * 5) / 9;
-        let celsius6 = ((newTemp6 - 32) * 5) / 9;
-        let celsius7 = ((newTemp7 - 32) * 5) / 9;
-
-        document.querySelector('.day1temp').textContent = celsius1.toFixed(1)
-        document.querySelector('.day2temp').textContent = celsius2.toFixed(1)
-        document.querySelector('.day3temp').textContent = celsius3.toFixed(1)
-        document.querySelector('.day4temp').textContent = celsius4.toFixed(1)
-        document.querySelector('.day5temp').textContent = celsius5.toFixed(1)
-        document.querySelector('.day6temp').textContent = celsius6.toFixed(1)
-        document.querySelector('.day7temp').textContent = celsius7.toFixed(1)
-        
-
-        
     }else{
-        
-    document.querySelector('.day1temp').textContent = data.days[0].temp
-    document.querySelector('.day2temp').textContent = data.days[1].temp
-    document.querySelector('.day3temp').textContent = data.days[2].temp
-    document.querySelector('.day4temp').textContent = data.days[3].temp
-    document.querySelector('.day5temp').textContent = data.days[4].temp
-    document.querySelector('.day6temp').textContent = data.days[5].temp
-    document.querySelector('.day7temp').textContent = data.days[6].temp
-    }
-   
 
-  
-   
+        document.querySelectorAll('.dayTemp').forEach((day, index) =>{
+            day.textContent = data.days[index].temp
+        })
+    }
 }
 
 elements.searchBtn.addEventListener('click', () =>{
@@ -245,4 +216,3 @@ elements.searchBtn.addEventListener('click', () =>{
 
 
 
-//Please solve location exists but no image example dududu

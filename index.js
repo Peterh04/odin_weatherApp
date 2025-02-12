@@ -5,7 +5,7 @@ import { tempConversionCelcius, tempConversionF } from "./tempConversion.js";
 
 
 const setEVentListeners = function setEventListeners (){
-    document.querySelector('.degreeBtn').addEventListener('click', () =>{
+        document.querySelector('.degreeBtn').addEventListener('click', () =>{
         document.querySelector('.freinhartBtn').classList.remove('selected');
         document.querySelector('.degreeBtn').classList.add('selected');
 

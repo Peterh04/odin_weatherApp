@@ -1,6 +1,7 @@
 const cityDiv = document.querySelector(".city-details")
 export const getImage = async function getImage(location){
 
+    const url = `https://pixabay.com/api/?key=48665468-d6bf78a407aba350b233d7943&q=${location}`;
 
     try{
         const response = await fetch(url);
